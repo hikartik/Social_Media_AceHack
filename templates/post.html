@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">{{ post.title }}</h1>
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Author: {{ post.author }}</h6>
+                <p class="card-text">{{ post.content }}</p>
+                <p class="card-text"><small class="text-muted">Date Posted: {{ post.date_posted }}</small></p>
+                <!-- Like button -->
+                <button type="button" class="btn btn-success" id="likeButton">Like</button>
+                <!-- Update button -->
+                <button type="button" class="btn btn-warning" id="updateButton">Update</button>
+                <!-- Delete button -->
+                <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for handling button actions -->
+    <script>
+        document.getElementById("likeButton").addEventListener("click", function() {
+            alert("Liked!");
+        });
+
+        document.getElementById("updateButton").addEventListener("click", function() {
+            alert("Updated!");
+        });
+
+        document.getElementById("deleteButton").addEventListener("click", function() {
+            if (confirm("Are you sure you want to delete this post?")) {
+                alert("Post deleted!");
+                // Add logic to delete the post from the database or perform other actions as needed
+            }
+        });
+    </script>
+</body>
+</html>
