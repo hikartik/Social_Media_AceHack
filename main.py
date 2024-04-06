@@ -9,7 +9,10 @@ posts = [
     {'author': 'Jane Smith', 'title': 'Second post', 'content': 'Another day, another post.', 'date_posted': 'April 2, 2024'}
 ]
 
-user_array=[]
+user_array = [
+    {'full_name': 'John Doe', 'email': 'john@example.com', 'password': 'password123', 'dob': '1990-01-01', 'gender': 'male'},
+    {'full_name': 'Jane Smith', 'email': 'jane@example.com', 'password': 'password456', 'dob': '1995-05-05', 'gender': 'female'}
+]
 
 @app.route('/')
 @app.route('/home')
@@ -27,8 +30,18 @@ def post(post_id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # Add login logic here
-        return redirect(url_for('home'))
+        email = request.form['email']
+        password = request.form['password']
+        
+        # Check if user exists and credentials match
+        for user in user_array:
+            if user['email'] == email and user['password'] == password:
+                # Redirect to home page if credentials are correct
+                return redirect(url_for('home'))
+        
+        # If no matching user found, display error message
+        error = 'Invalid email or password. Please try again.'
+        return render_template('login.html', title='Login', error=error)
     else:
         return render_template('login.html', title='Login')
 
